@@ -46,7 +46,7 @@ namespace RockPaperScissors1
                     int computerChoice = rand.Next(1, Enum.GetNames(typeof(RpsChoice)).Length + 1);
 
                     // print the choices
-                    Console.WriteLine($"The player's choice is {(RpsChoice)playerChoiceInt}.");
+                    Console.WriteLine($"{playerName}'s choice is {(RpsChoice)playerChoiceInt}.");
                     Console.WriteLine($"The computer's choice is {(RpsChoice)computerChoice}.");
 
                     // check who won
