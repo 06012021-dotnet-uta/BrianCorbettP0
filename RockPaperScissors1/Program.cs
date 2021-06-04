@@ -6,74 +6,69 @@ namespace RockPaperScissors1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Rock, Paper, Scissors!\nPlease enter your name:");
-            string playerName = Console.ReadLine();
+            RpsGame rpsGame = new RpsGame();
+            Console.WriteLine(rpsGame.WelcomeMessage());
+            Console.WriteLine("Please enter your first name:");
+            string playerFname = rpsGame.getPlayerName(Console.ReadLine());
 
-            bool keepPlaying = true;
-            while (keepPlaying)
+            PlayerBaseClass player = new PlayerBaseClass(playerFname);
+            ComputerBaseClass computer = new ComputerBaseClass();
+
+            while (rpsGame.KeepPlaying)
             {
-                int playerWins = 0, computerWins = 0;
-                bool successfulConversion = false;
                 int playerChoiceInt;
-                while (playerWins < 2 && computerWins < 2)
+                while (player.Score < 2 && computer.Score < 2)
                 {
-                    Console.WriteLine("Now make a choice.");
                     do
                     {
+                        Console.WriteLine("Make a choice.");
                         Console.WriteLine("1. Rock\n2. Paper\n3. Scissors");
                         string playerChoice = Console.ReadLine();
-
-                        // create int variable to capture user's converted choice
-                        successfulConversion = Int32.TryParse(playerChoice, out playerChoiceInt);
-
-                        // check if the user inputted an inbounds number
-                        if (playerChoiceInt > 3 || playerChoiceInt < 1)
-                            Console.WriteLine($"You inputted {playerChoiceInt}. This is not a valid choice.");
-                        else if (!successfulConversion)
-                            Console.WriteLine($"You inputted {playerChoiceInt}. This is not a valid choice.");
+                        playerChoiceInt = rpsGame.InputToInt(playerChoice);
                     }
                     // while input is not a number or not in bounds, loop again
-                    while (!successfulConversion || !(playerChoiceInt > 0 && playerChoiceInt < 4));
-
-                    if (successfulConversion == true)
-                        Console.WriteLine($"The conversion returned {successfulConversion} and the player chose {playerChoiceInt}.");
-                    else
-                        Console.WriteLine($"The conversion returned {successfulConversion} and the player chose {playerChoiceInt}.");
+                    while (playerChoiceInt == 0);
 
                     // get random number generator object
-                    Random rand = new Random();
                     // get a random number 1-3
-                    int computerChoice = rand.Next(1, Enum.GetNames(typeof(RpsChoice)).Length + 1);
+                    int computerChoiceInt = computer.getRandomChoice();
 
                     // print the choices
-                    Console.WriteLine($"{playerName}'s choice is {(RpsChoice)playerChoiceInt}.");
-                    Console.WriteLine($"The computer's choice is {(RpsChoice)computerChoice}.");
+                    Console.WriteLine($"{player.Name}'s choice is {(RpsChoice)playerChoiceInt}.");
+                    Console.WriteLine($"{computer.Name}'s choice is {(RpsChoice)computerChoiceInt}.");
 
                     // check who won
-                    if ((playerChoiceInt == 1 && computerChoice == 2) ||
-                        (playerChoiceInt == 2 && computerChoice == 3) ||
-                        (playerChoiceInt == 3 && computerChoice == 1))
+                    string winner = rpsGame.roundWinner(playerChoiceInt, computerChoiceInt);
+                    if (winner == "tie") Console.WriteLine("Tie round!");
+                    else if (winner == "player")
                     {
-                        Console.WriteLine("Computer Wins!");
-                        computerWins++;
+                        Console.WriteLine($"{player.Name} wins the round!");
+                        player.incrementScore();
                     }
-                    else if (playerChoiceInt == computerChoice)
-                        Console.WriteLine("Tie Game!");
                     else
                     {
-                        Console.WriteLine($"{playerName} Wins!");
-                        playerWins++;
+                        Console.WriteLine($"{computer.Name} wins the round!");
+                        computer.incrementScore();
                     }
                 }
-                if (playerWins >= 2)
-                    Console.WriteLine($"{playerName} won it all!");
-                else
-                    Console.WriteLine("The computer won it all!");
 
-                Console.WriteLine("Would you like to play again? (y/n)");
-                string playAgain = Console.ReadLine();
-                if (playAgain == "n")
-                    keepPlaying = false;
+                if (player.Score >= 2)
+                    Console.WriteLine($"{player.Name} won it all!");
+                else
+                    Console.WriteLine($"{computer.Name} won it all!");
+
+                string playAgain;
+                do
+                {
+                    Console.WriteLine("Would you like to play again? (y/n)");
+                    playAgain = Console.ReadLine();
+                    if (playAgain == "n") rpsGame.KeepPlaying = false;
+                    else
+                    {
+                        player.reset();
+                        computer.reset();
+                    }
+                } while (playAgain != "y" && playAgain != "n");
             }// end of game loop
         }// end of main
     }// end of class
