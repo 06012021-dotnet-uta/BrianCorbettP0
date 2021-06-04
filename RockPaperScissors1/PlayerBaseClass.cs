@@ -45,5 +45,9 @@ namespace RockPaperScissors1
             _score = 0;
             return true;
         }
+        public bool wonItAll()
+        {
+            return _score < 2;
+        }
     }
 }

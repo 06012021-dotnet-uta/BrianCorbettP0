@@ -52,7 +52,7 @@ namespace RockPaperScissors1
                     }
                 }
 
-                if (player.Score >= 2)
+                if (player.wonItAll())
                     Console.WriteLine($"{player.Name} won it all!");
                 else
                     Console.WriteLine($"{computer.Name} won it all!");
