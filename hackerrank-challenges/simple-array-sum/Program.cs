@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 // Given an array of integers, find the sum of its elements.
-namespace simple_array_sum.cs
+namespace simple_array_sum
 {
     class Result
     {
