@@ -1,0 +1,34 @@
+Three main types of run-time errors:
+  - Usage Errors:
+    - an error in program logic (written in the code, a bug)
+    - should be addressed by modifying the faulty code
+  - Program Errors:
+    - an error that cannot necessarily be avoided by writing bug-free code
+  - System Failures:
+    - an error that cannot be handled programmatically in any meaningful way
+
+All exceptions inehrit directly, or indirectly, from the Exception class. It is at the top of the
+exception hierarchy.
+
+Usage of try/catch/finally block:
+  - obtain, use resources in try block
+  - deal with exceptional circumstances in a catch block
+  - release resources in finally block
+
+Throw -
+  - rethrows the exception that is caught by the catch statement so the next method up the stack receives it to.
+  - it's like returning the exception for an outer method
+
+example of a custom exception:
+[[[
+public class EmployeeNotFoundException : Exception // must derive itself from an Exception class
+{
+  public EmployeeNotFoundException() { }
+
+  public EmployeeNotFoundException(string message) : base(message) { }
+
+  public EmployeeNotFoundException(string message, Exception inner) : base(message, inner) { }
+
+  // must implement these three constructors
+}
+]]]

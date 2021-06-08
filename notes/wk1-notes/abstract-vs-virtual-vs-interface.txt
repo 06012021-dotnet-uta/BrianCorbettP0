@@ -1,0 +1,167 @@
+ABSTRACT CLASS -
+  - can't create an instance of it
+  - only used to be a base class, a class for derived classes to inherit from
+  - provides default functionality for derived classes, useful to avoid code duplication
+  - it can contain:
+    - abstract methods - implementation written in derived classes
+      - non-abstract classes cannot contain abstract methods
+    - non-abstract methods - implementation written in the abstract class
+example code for abstract class:
+[[[ 
+namespace AbstractVsInterface 
+{
+  public abstract class Device
+  {
+    public int number = 0;
+    public abstract int NumberGet { get; set; } //must be implemented in derived class
+
+    public void PowerOn()
+    {
+      // functionality, implementation
+    }
+    public void PowerOff()
+    {
+      // functionality, implementation
+    }
+
+    public abstract void PlayVideo(); // must be implemented in derived class
+    public virtual void PlayAudio()
+    {
+      // functionality that CAN be overridden in derived class
+    }
+  }//Device class
+
+  public class SamsungGalaxy : Device
+  {
+    public override int NumberGet
+    {
+      get { // specific code for getter }
+      set { // specific code for setter }
+    }
+
+    public override void PlayVideo()
+    {
+      // define functionality for this function that was declared in abstract class
+    }
+  }//SamsungGalaxy class
+}//namespace
+]]]
+
+
+
+INTERFACE -
+  - not a class, it's an entity which requires set of functionalities to be present
+  - interface must start with 'I' prefix i.e. IDevice, IInterface
+  - a class can inherit from multiple interfaces
+  - can't initialize variables
+  - can't define, only declare
+  - a class inheriting from an interface MUST implement all the declared properties and methods
+example code for interface: 
+[[[
+namespace AbstractVsInterface
+{
+  interface IFruit 
+  {
+    // no variables, no implementation
+    // all methods declared are public by default
+
+    string Description { get; set; }
+    string Name();
+    string Season();
+    string Color();
+  }//IFruit interface
+
+  public class Orange : IFruit
+  {
+    public string Description
+    {
+      get { // specific code for getter }
+      set { // specific code for setter }
+    }
+
+    public string Name() 
+    {
+      // implementation of method
+    }
+    public string Season() 
+    {
+      // implementation of method
+    }
+    public string Color() 
+    {
+      // implementation of method
+    }
+
+    // NOTICE EVERY SINGLE METHOD DECLARED IN INTERFACE WAS IMPLEMENTED IN ORANGE. THIS MUST HAPPEN.
+  }//Orange class
+}//namespace
+]]]
+
+Abstract class						Interface
+  - a class can only inherit one abstract class		  - a class can inherit multiple interfaces
+  - can provide complete code, or just details that	  - cannot provide any code except for declarations
+    must be overridden
+  - can contain access modifiers			  - all access modifiers are assumed public
+  - defines core identity of a class therefore used	  - defines basic abilities of a class
+    for objects of the same type
+  - if various implementations are of the same kind	  - if various implementations only share method declarations,
+    and use common behavior or status, USE ABSTRACT	    USE INTERFACE
+  - if we want to add method to abstract class, we 	  - if we want to add method to interface, we must find each
+    have the option of providing implementation so 	    class that implements the interface and define functionality
+    other code may still work properly 			    for the new method
+
+THINGS TO KEEP IN MIND WHEN CHOOSING BETWEEN THE TWO:
+  - Interface defines what something can do
+    Abstract defines what something is
+
+VIRTUAL & OVERRIDE
+  - a method can only be overridden if it is defined with the 'virtual' keyword
+  - then, some other method defined with the 'override' keyword can change the functionality
+example code for virtual and override:
+[[[
+namespace Virtual
+{
+  class Student
+  {
+    public string GetName() 
+    {
+      // functionality
+    }
+  }
+  class Teacher : Student		// will throw error because GetName() was not defined with 'virtual'
+  {					// keyword in 'Student' nor the 'override' keyword in 'Teacher'
+    public string GetName()
+    {
+      // altered functionality
+    }
+  }
+}
+
+namespace Virtual
+{
+  class Student
+  {
+    public virtual string GetName() 
+    {
+      // functionality
+    }
+  }
+  class Teacher : Student		// will work because GetName() was defined with 'virtual'
+  {					// keyword in 'Student' and the 'override' keyword in 'Teacher'
+    public override string GetName()
+    {
+      // altered functionality
+    }
+  }
+}
+]]]
+
+
+
+
+
+
+
+
+
+

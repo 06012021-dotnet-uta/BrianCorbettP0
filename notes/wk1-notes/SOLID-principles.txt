@@ -1,0 +1,20 @@
+Single Responsibility - a class should only have one responsibility
+		      - changes to a part of software should only be able to affect
+ 		        the specification of one class
+Open-Closed - open to extensions, closed to modifications
+ 	    - new requirements should be able to be added only by adding and not modifying
+	      other parts of code
+Liskov Substitution - derived classes must implement ALL the methods and fields of their parent
+  		    - after implementation, you should be able to only use derived classes which
+		      will behave like the parent class
+ 		    - this ensures a derived class does not affect the behavior of the parent class.
+		      the derived class can be SUBSTITUTED for the parent class
+Interface Segregation - interfaces should have a SPECIFIC purpose, responsibility
+		      - a class shouldn't have to implement an interface if the class doesn't share
+		        the interfaces purpose
+		      - large interfaces are more likely to include methods that not all classes can implement
+Dependency Inversion - high-level classes implement business rules or logic (front-end)
+		     - low-level classes deal with more detailed operations (writing to DB, messaging OS, etc.)
+	   	     - when a class to closely used design, implementation of another, changes to one may 
+		       break the other. keep them as loosely coupled as possible
+		     - make the classes dependent on abstractions rather than them "knowing each other"

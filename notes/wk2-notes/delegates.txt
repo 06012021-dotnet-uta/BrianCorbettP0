@@ -1,0 +1,33 @@
+delegate / multicast delegate
+
+Binding
+  - early binding (static binding, compile-time)
+    - static binding     - compile-time
+  - late binding (used by delegates in .NET)
+    - dynamic binding    - run-time
+
+useful when you want multiple methods executed in sequence with the same parameter
+
+declaration of delegate type (signature of methods that can be assigned to delegate)
+[[[ 
+public static void DelegateMethod(string message)
+{
+  Console.WriteLine(message);
+}
+public delegate void Del(string message); // always public
+Del handler = DelegateMethod;
+handler("Hello world");
+]]]
+
+Action delegate
+  - always returns void
+function delegate
+  - returns a non-void type
+
+
+
+
+
+
+
+
