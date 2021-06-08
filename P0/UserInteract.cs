@@ -18,11 +18,11 @@ namespace P0
             }
             else if (type == typeof(System.Int32))
             {
-                int UserInputInt;
-                try
-                {
-                    bool SuccessfulConversion = Int32.TryParse(UserInput, out UserInputInt);
-                }
+                // int UserInputInt;
+                // try
+                // {
+                //     bool SuccessfulConversion = Int32.TryParse(UserInput, out UserInputInt);
+                // }
             }
         }
     }
