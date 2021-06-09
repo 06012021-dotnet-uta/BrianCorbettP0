@@ -1,29 +1,22 @@
-using System;
-
 namespace P0
 {
-    public class UserInteract
+    public class UserInteract : IWrite, IRead
     {
+        Write write = new Write();
+        Read read = new Read();
+
         public void PutLine(string message)
         {
-            Console.WriteLine(message);
+            write.PutLine(message);
         }
 
-        public void TakeLine(Type type)
+        public double GetNumber()
         {
-            string UserInput = Console.ReadLine();
-            if (type == typeof(System.String))
-            {
-                //
-            }
-            else if (type == typeof(System.Int32))
-            {
-                // int UserInputInt;
-                // try
-                // {
-                //     bool SuccessfulConversion = Int32.TryParse(UserInput, out UserInputInt);
-                // }
-            }
+            return read.GetNumber();
+        }
+        public string GetString()
+        {
+            return read.GetString();
         }
     }
 }

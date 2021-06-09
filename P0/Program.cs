@@ -1,4 +1,7 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System;
+
+// could implement navigating back and forth bewteen pages
 
 namespace P0
 {
@@ -6,8 +9,15 @@ namespace P0
     {
         static void Main(string[] args)
         {
-            LogIn login = new LogIn();
-            login.LoginUser();
+            List<Page> Pages = new List<Page>()
+            {
+                new WelcomePage()
+            };
+
+            while (true)
+            {
+                //
+            }
         }
     }
 }

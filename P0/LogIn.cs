@@ -2,10 +2,9 @@ namespace P0
 {
     public class LogIn
     {
-        public void LoginUser()
+        public bool LoginUser()
         {
-            UserInteract userInteract = new UserInteract();
-            userInteract.TakeLine(typeof(int));
+            return true;
         }
     }
 }
