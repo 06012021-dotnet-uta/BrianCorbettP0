@@ -1,0 +1,19 @@
+0NF	- all information stored in one table
+		
+1NF	- have a single primary key
+	- each entity needs to be unique
+	- the table contains atomic values only
+
+2NF	- remove subsets of data that apply to multiple rows of a tbale and place them in 
+		separate tables with PK>FK relatioanships among the new tables
+	- if the tableis in 1NF and every nonkey attribute is dpeendent on the PK
+	Actions:
+	- 1NF table divided into two tables
+	- Table 1 contains only person information. Id is created as the PK for table 1
+	- 
+
+3NF	- there must be no dependencies bewteen fields in a singlerow
+	- "given a value for column B, do we then have only one possible value for column C?"
+	- if so, B and C should be in new table with one of them becoming the PK. A reference to thenew table
+		should be left in the original tableand marekd as FK
+

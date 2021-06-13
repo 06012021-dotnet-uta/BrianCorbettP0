@@ -1,0 +1,79 @@
+SELECT CustomerId, totalAmount FROM Orders
+WHERE totalAmount < 100;
+
+SELECT CustomerId, totalAmount FROM Orders
+WHERE totalAmount > 0
+ORDER BY OrderDate [DESC];
+
+SELECT FirstName, LastName FROM Customers
+WHERE LastName LIKE ['Moo', 'M%', 'M_'];
+// 'Moo' - where they share 'Moo' in the LastName
+// 'M%' - starts with 'M' and anything after ('%' wildcard, like * in regex)
+// 'M_' - starts with 'M' and contains one letter after ('_' placeholder, like . in regex)
+ 
+SELECT SUM(totalAmount) AS TotalSales
+FROM Orders;
+
+SELECT SUM(TotalAmount), CustomerId
+FROM Orders
+WHERE CustomerId >= 2
+GROUP BY CustomerId;
+
+SELECT FirstName, CustomerId
+FROM Customers
+WHERE FirstName NOT IN('Matt', 'Libby');
+
+SELECT CustomerId, FirstName
+FROM Customers
+WHERE LastName BETWEEN 'A' AND 'P';
+
+--------------------
+
+
+SELECT FirstName, CustomerId, Country
+FROM Customer
+WHERE Country <> 'US';
+
+SELECT * FROM Customer
+WHERE Country = 'Brazil';
+
+SELECT * FROM Employee
+WHERE Title LIKE '%Sales%Agent%';
+
+SELECT DISTINCT BillingCountry
+FROM Invoice;
+
+SELECT COUNT(InvoiceDate)
+FROM Invoice
+WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31';
+
+SELECT SUM(Total) AS TotalAmount, COUNT(InvoiceId) AS "Invoices in 2009"
+FROM Invoice
+WHERE YEAR(InvoiceDate) = 2009;
+
+SELECT COUNT(Quantity) AS TotalItems 
+FROM InvoiceLine 
+WHERE InvoiceId = '37';
+
+SELECT BillingCountry.count(BillingCountry) AS "Number of orders"
+FROM dbo.Invoice
+GROUP BY BillingCountry;
+
+SELECT BillingCountry, SUM(Total)
+FROM Invoice
+GROUP BY BillingCountry
+ORDER BY SUM(Total);
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+CREATE TABLE Customer(
+  CustomerId INT NOT NULL IDENTITY(1, 1),
+  FirstName NVARCHAR(30) NOT NULL,
+  LastName NVARCHAR(30) NOT NULL,
+  Username NVARCHAR(20) NOT NULL,
+  Pssword NVARCHAR(20) NOT NULL,
+  SignupDate DATE NOT NULL,
+  PRIMARY KEY (CustomerId)
+);
+
+CREATE TABLE CustomerOrder(
+  OrderId INT NOT NULL IDENTITY(10, 1),
+  OrderDate DATE NOT NULL,
+  OrderCost DECIMAL(6, 2) NOT NULL,
+  CustomerId INT NOT NULL,
+  PRIMARY KEY (OrderId),
+  FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId)
+);
+
+CREATE TABLE Items(
+  ItemId INT NOT NULL IDENTITY(1001, 1),
+  ItemName NVARCHAR(30) NOT NULL,
+  ItemPrice DECIMAL(6, 2) NOT NULL,
+  ItemDescription NVARCHAR(150) NOT NULL,
+  PRIMARY KEY (ItemId)
+);
+
+CREATE TABLE Store(
+  StoreId INT NOT NULL IDENTITY(100, 5),
+  StoreLocation NVARCHAR(30) NOT NULL,
+  PRIMARY KEY (StoreId)
+);
+
+CREATE TABLE OrderedItems(
+  OrderId INT NOT NULL,
+  ItemId INT NOT NULL,
+  PRIMARY KEY (OrderId, ItemId),
+  FOREIGN KEY (OrderId) REFERENCES CustomerOrder(OrderId),
+  FOREIGN KEY (ItemId) REFERENCES Items(ItemId)
+);
+
+CREATE TABLE StoredItems(
+  ItemId INT NOT NULL,
+  StoreId INT NOT NULL,
+  InStock INT NOT NULL DEFAULT(0),
+  PRIMARY KEY (ItemId, StoreId),
+  FOREIGN KEY (ItemId) REFERENCES Items(ItemId),
+  FOREIGN KEY (StoreId) REFERENCES Store(StoreId)
+);
+
+DROP TABLE IF EXISTS OrderedItems;
+DROP TABLE IF EXISTS StoredItems;
+DROP TABLE IF EXISTS Items;
+DROP TABLE IF EXISTS CustomerOrder;
+DROP TABLE IF EXISTS Customer;
+DROP TABLE IF EXISTS Store;
+

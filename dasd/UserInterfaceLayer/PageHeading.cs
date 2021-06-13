@@ -1,4 +1,6 @@
-namespace P0
+using BusinessLayer;
+
+namespace UserInterfaceLayer
 {
     public class PageHeading : Write
     {
