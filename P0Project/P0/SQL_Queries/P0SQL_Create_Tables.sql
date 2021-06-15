@@ -8,13 +8,21 @@ CREATE TABLE Customer(
   PRIMARY KEY (CustomerId)
 );
 
+CREATE TABLE Store(
+  StoreId INT NOT NULL IDENTITY(100, 5),
+  StoreLocation NVARCHAR(30) NOT NULL,
+  PRIMARY KEY (StoreId)
+);
+
 CREATE TABLE CustomerOrder(
   OrderId INT NOT NULL IDENTITY(10, 1),
   OrderDate DATE NOT NULL,
   OrderCost DECIMAL(6, 2) NOT NULL,
   CustomerId INT NOT NULL,
+  StoreId INT NOT NULL,
   PRIMARY KEY (OrderId),
-  FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId)
+  FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId),
+  FOREIGN KEY (StoreId) REFERENCES Store(StoreId)
 );
 
 CREATE TABLE Items(
@@ -25,15 +33,10 @@ CREATE TABLE Items(
   PRIMARY KEY (ItemId)
 );
 
-CREATE TABLE Store(
-  StoreId INT NOT NULL IDENTITY(100, 5),
-  StoreLocation NVARCHAR(30) NOT NULL,
-  PRIMARY KEY (StoreId)
-);
-
 CREATE TABLE OrderedItems(
   OrderId INT NOT NULL,
   ItemId INT NOT NULL,
+  QuantityOrdered INT NOT NULL,
   PRIMARY KEY (OrderId, ItemId),
   FOREIGN KEY (OrderId) REFERENCES CustomerOrder(OrderId),
   FOREIGN KEY (ItemId) REFERENCES Items(ItemId)

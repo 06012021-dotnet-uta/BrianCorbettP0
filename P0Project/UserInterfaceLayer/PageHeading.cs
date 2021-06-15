@@ -4,10 +4,8 @@ namespace UserInterfaceLayer
 {
     public class PageHeading : Write
     {
-        private string pageTitle;
-        public string PageTitle { get; set; }
-        private string pagePrompt;
-        public string PagePrompt { get; set; }
+        private readonly string pageTitle;
+        private readonly string pagePrompt;
 
         public PageHeading(string pageTitle, string pagePrompt)
         {
@@ -17,8 +15,8 @@ namespace UserInterfaceLayer
 
         public void Display()
         {
-            PutLine($"{this.pageTitle}");
-            PutLine($"{this.pagePrompt}");
+            PutLine($"{pageTitle}");
+            PutLine($"{pagePrompt}");
             PutLine($"~~~~~~~~~~");
         }
     }

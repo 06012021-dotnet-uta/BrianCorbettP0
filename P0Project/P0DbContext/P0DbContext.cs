@@ -1,32 +1,15 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 using ML = ModelsLayer;
 
 #nullable disable
-
-//context.Customers.Add(newCustomer);
-//context.SaveChanges();
-
-// ========== Get all rows in table ========
-//foreach (var row in context.Customers.ToList())
-//{
-//  Console.WriteLine($"{row.FirstName} {row.LastName} ({row.Username}) signed up on {row.SignupDate}.");
-//}
-// ==========================
 
 namespace P0DbContext
 {
     public partial class P0DbContext : DbContext
     {
-        public P0DbContext()
-        {
-        }
+        public P0DbContext() { }
 
-        public P0DbContext(DbContextOptions<P0DbContext> options)
-            : base(options)
-        {
-        }
+        public P0DbContext(DbContextOptions<P0DbContext> options) : base(options) { }
 
         public virtual DbSet<ML.Customer> Customers { get; set; }
         public virtual DbSet<ML.CustomerOrder> CustomerOrders { get; set; }
@@ -38,10 +21,7 @@ namespace P0DbContext
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-            {
-#warning To prxotect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=P0Db;Trusted_Connection=True;");
-            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

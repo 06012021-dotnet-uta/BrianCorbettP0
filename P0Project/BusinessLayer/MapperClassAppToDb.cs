@@ -42,11 +42,11 @@ namespace BusinessLayer
     }
 
     public static ML.CustomerOrder AppOrderToDbOrder(
-      int orderId, int customerId, decimal orderCost)
+      int customerId, int storeId, decimal orderCost)
     {
       ML.CustomerOrder newOrder = new()
       {
-        OrderId = orderId,
+        StoreId = storeId,
         CustomerId = customerId,
         OrderCost = orderCost,
         OrderDate = DateTime.Now
@@ -55,12 +55,13 @@ namespace BusinessLayer
     }
 
     public static ML.OrderedItem AppOrderedItemToDbOrderedItem(
-      int itemId, int orderId)
+      int itemId, int orderId, int quantity)
     {
       ML.OrderedItem newOrderedItem = new()
       {
         OrderId = orderId,
-        ItemId = itemId
+        ItemId = itemId,
+        QuantityOrdered = quantity
       };
       return newOrderedItem;
     }

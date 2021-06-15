@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace UserInterfaceLayer
 {
   public class HomePage : Page
   {
     private int menuChoice;
-    public int MenuChoice { get; set; }
+    public int MenuChoice { get; }
 
     public HomePage() : base()
     {
       ManualInitializePageHeading("Home Page", "Select an option");
-      List<string> optionsList = new List<string>() {
+      List<string> optionsList = new() {
         "Choose Store",
         "Order History",
         "Customer Search",
@@ -26,7 +22,7 @@ namespace UserInterfaceLayer
     public void ShowPage()
     {
       base.ShowPage();
-      MenuChoice = UserInteract.GetInteger();
+      menuChoice = UserInteract.GetInteger();
     }
   }
 }

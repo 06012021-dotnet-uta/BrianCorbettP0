@@ -1,0 +1,81 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My HTML Practice</title>
+</head>
+
+<body>
+    <img src="Logo_HTML5.jpg" alt="HTML 5 Logo" style="height: 100px;">
+
+    <h1>About</h1>
+    <p>Some text about this website</p>
+
+    <h2>Our Locations</h2>
+    <ul>
+        <li>USA</li>
+        <ul>
+            <li><a href="#">New York</a></li>
+            <li><a href="#">Columbus</a></li>
+            <li><a href="#">Austin</a></li>
+            <li><a href="#">Philly</a></li>
+        </ul>
+        <li>World</li>
+        <ul>
+            <li><a href="#">Ottawa</a></li>
+            <li><a href="#">Sydney</a></li>
+        </ul>
+    </ul>
+
+    <h2>Upcoming Classes</h2>
+    <table style="border: black solid 1px;">
+        <thead>
+            <th style="border: black solid 1px;">Location</th>
+            <th style="border: black solid 1px;">Topic</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: black solid 1px;">New York</td>
+                <td style="border: black solid 1px;">Javascript & jQuery</td>
+            </tr>
+            <tr>
+                <td style="border: black solid 1px;">San Francisco</td>
+                <td style="border: black solid 1px;">HTML & CSS</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Sign up!</h2>
+    <form action="https://google.com/">
+        <label for="fname">Name:</label>
+        <input type="text" name="fname" id="fname"><br>
+        <label for="email">E-mail:</label>
+        <input type="email" name="email" id="email"><br>
+        <label for="location">Location:</label>
+        <select name="location" id="location">
+            <option value="sanfrancisco">San Francisco</option>
+            <option value="newyork">New York</option>
+            <option value="austin">Austin</option>
+            <option value="columbus">Columbus</option>
+            <option value="ottawa">Ottawa</option>
+        </select><br>
+        <fieldset>
+            <legend>Gender:</legend>
+            <label for="male">Male</label>
+            <input type="radio" name="gender" value="female" id="female">
+            <label for="female">Female</label>
+            <input type="radio" name="gender" value="female" id="female">
+        </fieldset>
+
+        <label for="experience">Experience:</label><br>
+        <textarea name="experience" id="experience" cols="30" rows="10"></textarea><br>
+
+        <button value="Sign Up">Sign Up</button>
+    </form>
+
+    <p><a href="#">Twitter</a> | <a href="#">Facebook</a> | <a href="#">Flickr</a></p>
+</body>
+
+</html>

@@ -8,29 +8,22 @@ namespace UserInterfaceLayer
   {
     private PageHeading pageHeading;
     private Menu menu;
-    public BL.UserInteract UserInteract = new BL.UserInteract();
+    public BL.UserInteract UserInteract = new();
 
     protected void ManualInitializePageHeading(string title, string prompt)
     {
       pageHeading = new PageHeading(title, prompt);
     }
-    protected void ManualInitializeOptionsList(List<string> options)
+    protected void ManualInitializeOptionsList(List<string> options, bool showNumbers=true)
     {
-      menu = new Menu(options);
+      menu = new Menu(options, showNumbers);
     }
 
-    public void LoadPage()
-    {
-      Console.Clear();
-    }
     public void ShowPage()
     {
-      LoadPage();
+      Console.Clear();
       pageHeading.Display();
-      if (menu != null)
-      {
-        menu.PlaceMenu();
-      }
+      if (menu != null) menu.PlaceMenu();
     }
   }
 }

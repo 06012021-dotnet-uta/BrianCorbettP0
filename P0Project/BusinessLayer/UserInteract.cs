@@ -2,8 +2,8 @@ namespace BusinessLayer
 {
   public class UserInteract : IWrite, IRead
   {
-    Write write = new Write();
-    Read read = new Read();
+    readonly Write write = new();
+    readonly Read read = new();
 
     public void PutLine(string message)
     {

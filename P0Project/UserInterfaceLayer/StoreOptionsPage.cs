@@ -1,29 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace UserInterfaceLayer
 {
   public class StoreOptionsPage : Page
   {
     private int menuChoice;
-    public int MenuChoice { get; set; }
+    public int MenuChoice { get; }
     private string focusStore;
-    public string FocusStore { get; set; }
+    public string FocusStore { get; }
+
 
     public StoreOptionsPage(string focusStore) : base()
     {
+      this.focusStore = focusStore;
       ManualInitializePageHeading($"{focusStore} options", "Select an option");
       ManualInitializeOptionsList(new List<string>() { "Inventory", $"{focusStore} Order History" });
-      this.FocusStore = focusStore;
     }
 
     public void ShowPage()
     {
       base.ShowPage();
-      MenuChoice = UserInteract.GetInteger();
+      menuChoice = UserInteract.GetInteger();
     }
   }
 }
