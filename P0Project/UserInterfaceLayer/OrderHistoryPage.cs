@@ -4,7 +4,12 @@ namespace UserInterfaceLayer
 {
   public class OrderHistoryPage : Page
   {
-    public OrderHistoryPage(int customerId, int storeId=-1) : base()
+    /// <summary>
+    /// Initializes the page heading and data that belongs on the page
+    /// </summary>
+    /// <param name="customerId">The ID of the customer to get order history of</param>
+    /// <param name="storeId">The ID of the store that the order came from</param>
+    public OrderHistoryPage(int customerId=-1, int storeId=-1) : base()
     {
       if (storeId == -1)
       {
@@ -14,11 +19,14 @@ namespace UserInterfaceLayer
       else
       {
         string StoreLocation = BL.DBInteract.GetStoreLocationName(storeId);
-        ManualInitializePageHeading($"Your order history from {StoreLocation}", "These are all of your orders\nPress enter when done viewing");
-        ManualInitializeOptionsList(BL.DBInteract.GetStoreCustomerOrderHistory(customerId, storeId), false);
+        ManualInitializePageHeading($"Order history from {StoreLocation}", "Press enter when done viewing");
+        ManualInitializeOptionsList(BL.DBInteract.GetStoreOrderHistory(storeId), false);
       }
     }
 
+    /// <summary>
+    /// Displays order history page data
+    /// </summary>
     public void ShowPage()
     {
       base.ShowPage();

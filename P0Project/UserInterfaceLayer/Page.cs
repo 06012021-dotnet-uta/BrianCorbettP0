@@ -8,7 +8,7 @@ namespace UserInterfaceLayer
   {
     private PageHeading pageHeading;
     private Menu menu;
-    public BL.UserInteract UserInteract = new();
+    protected BL.UserInteract UserInteract = new();
 
     protected void ManualInitializePageHeading(string title, string prompt)
     {
@@ -19,6 +19,9 @@ namespace UserInterfaceLayer
       menu = new Menu(options, showNumbers);
     }
 
+    /// <summary>
+    /// Displays the page
+    /// </summary>
     public void ShowPage()
     {
       Console.Clear();

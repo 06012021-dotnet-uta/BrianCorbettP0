@@ -41,10 +41,10 @@ namespace P0
       string Password = LoginPage.PassWord;
       bool LoginValidationSuccessful = BL.DBValidation.ValidateLogin(Username, Password);
       CustomerId = BL.DBInteract.GetCustomerId(Username, Password);
-      Cart = new(CustomerId);
       switch (LoginValidationSuccessful)
       {
         case true:
+          Cart = new(CustomerId);
           goto Home;
         case false:
           goto Landing;
@@ -81,6 +81,8 @@ namespace P0
           goto CustomerSearch;
         case 4:
           goto Landing;
+        default:
+          goto Home;
       }
     ChooseStore:
       UI.ChooseStorePage ChooseStorePage = new();
@@ -98,6 +100,10 @@ namespace P0
           goto StoreInventory;
         case 2:
           goto StoreOrderHistory;
+        case 3:
+          goto Home;
+        default:
+          goto StoreOptions;
       }
     StoreInventory:
       UI.StoreInventoryPage StoreInventoryPage = new(FocusStore);
@@ -141,24 +147,29 @@ namespace P0
             context.OrderedItems.Add(NewOrderedItem);
           }
           context.SaveChanges();
+          Cart.ClearAll();
           goto Home;
+        case -1:
+          goto StoreInventory;
         default:
           Cart.ClearAll();
-          goto StoreInventory;
+          goto Home;
       }
     StoreOrderHistory:
       StoreId = BL.DBInteract.GetStoreId(FocusStore);
-      UI.OrderHistoryPage StoreOrderHistoryPage = new(CustomerId, StoreId);
+      UI.OrderHistoryPage StoreOrderHistoryPage = new(storeId: StoreId);
       StoreOrderHistoryPage.ShowPage();
       goto Home;
     OrderHistory:
-      UI.OrderHistoryPage OrderHistoryPage = new(CustomerId);
+      UI.OrderHistoryPage OrderHistoryPage = new(customerId: CustomerId);
       OrderHistoryPage.ShowPage();
       goto Home;
     CustomerSearch:
-      //////
+      UI.CustomerSearchPage CustomerSearchPage = new();
+      CustomerSearchPage.ShowPage();
+      goto Home;
     Quit:
-      Console.WriteLine("QUIT");
+      Console.WriteLine("Thanks for being a loyal customer at Golfs-a-lot!");
     }
   }
 }
