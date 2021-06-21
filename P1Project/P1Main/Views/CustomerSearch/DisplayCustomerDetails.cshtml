@@ -1,0 +1,16 @@
+﻿@model List<List<string>>
+
+@{
+  ViewData["Title"] = "DisplayCustomerDetails";
+}
+
+<h1>DisplayCustomerDetails</h1>
+
+@foreach (var detail in Model)
+{
+  <h1>@detail[0] @detail[1]</h1><h2>(@detail[2])</h2>
+  <br />
+  <h3>Signed up on @DateTime.Parse(detail[3]).ToString("yyyy-MM-dd")</h3>
+  <br /><br />
+}
+
